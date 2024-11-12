@@ -1,10 +1,9 @@
-import HomePage from "~/pages/HomePage"
-import ServicesPage from "~/pages/ServicesPage"
+import LayoutAdmin from "~/components/Layout/LayoutAdmin"
+import Dashboard from "~/pages/Admin/Dashboard"
 
 //Public Routes
 const publicRoutes =[
-    {path: "/", component: HomePage},
-    {path: "/services", component: ServicesPage},
+    {path: "/dashboard", component: Dashboard, layout: LayoutAdmin},
 ]
 
 //Private Routers

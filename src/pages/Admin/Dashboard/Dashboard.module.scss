@@ -1,0 +1,64 @@
+.wrapper {
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.name-page {
+    display: flex;
+    align-items: center;
+
+    .icon-home {
+        color: var(--TextPrimary);
+    }
+
+    span {
+        margin-left: 10px;
+        color: var(--TextPrimary);
+    }
+}
+
+.wrapper__card {
+
+    .style-card {
+        position: relative;
+        width: 320px;
+        border-radius: 20px;
+        height: 150px;
+        padding: 10px;
+    }
+
+    .card__sales {
+        @extend .style-card;
+        background: linear-gradient(90deg, #FF70938B, #FFB1B1, #FFD08B);
+    }
+
+    .card__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+            color: #fff;
+        }
+
+        .icon-chartbar {
+            color: #fff;
+        }
+    }
+
+    .card__content {
+        width: 100%;
+        background-color: #fff;
+
+        p {
+            position: absolute;
+            font-size: 2.0rem;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+    }
+}

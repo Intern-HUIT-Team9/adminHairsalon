@@ -14,14 +14,14 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme, Dropdown } from 'antd';
 import classNames from 'classnames/bind';
-import style from './DefaultLayout.module.scss';
+import style from './LayoutAdmin.module.scss';
 
 const cx = classNames.bind(style);
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 const colorOptions = [
-    { name: '#113536', value: '#113536' },
+    { name: '#F4CED9', value: '#F4CED9' },
     { name: '#551c3b', value: '#551c3b' },
     { name: '#3e2069', value: '#3e2069' },
     { name: '#13a8a8', value: '#13a8a8' },
@@ -35,9 +35,9 @@ const getTextColor = (backgroundColor) => {
 };
 
 
-function DefaultLayout({ children }) {
+function LayoutAdmin({ children }) {
     const [collapsed, setCollapsed] = useState(false);
-    const [selectedColor, setSelectedColor] = useState('#9CD3D8');
+    const [selectedColor, setSelectedColor] = useState('#F4CED9');
     const [selectedKey, setSelectedKey] = useState(null);
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -55,8 +55,11 @@ function DefaultLayout({ children }) {
 
     return (
         <Layout className={cx('wrapper')}>
-            <Sider trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: selectedColor }}>
-                <div className={cx('logo')}>Logo</div>
+            <Sider className={cx('wrapper-sider')} trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: selectedColor }}>
+                <div className={cx('logo')}>
+                    <img src="https://picsum.photos/200/300" alt="logo" />
+                    {!collapsed && <span>Name shop</span>}
+                </div>
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
@@ -70,121 +73,78 @@ function DefaultLayout({ children }) {
                         onClick={() => handleMenuItemClick('1')}
                         style={{ color: textColor }}
                     >
-                        Tổng quan
-                    </Menu.Item>
-                    <Menu.Item
-                        key="2"
-                        icon={<ShoppingCartOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '2' })}
-                        onClick={() => handleMenuItemClick('2')}
-                        style={{ color: textColor }}
-                    >
-                       Sản phẩm
+                        Dashboard
                     </Menu.Item>
                     <SubMenu
                         key="sub1"
                         icon={<UnorderedListOutlined style={{ color: textColor }} />}
-                        title={<span style={{ color: textColor }}>Đơn hàng</span>}
+                        title={<span style={{ color: textColor }}>Account</span>}
                         popupStyle={{ backgroundColor: selectedColor }}
                         style={{ backgroundColor: collapsed ? selectedColor : undefined }}
                     >
                         <Menu.Item
-                            key="3"
-                            className={cx('custom-menu-item', { selected: selectedKey === '3', collapsed: collapsed })}
+                            key="2"
+                            className={cx('custom-menu-item', { selected: selectedKey === '2', collapsed: collapsed })}
                             onClick={() => handleMenuItemClick('3')}
                             style={{ color: collapsed ? '#000' : textColor }}
                         >
-                           Đơn hàng đã đặt
+                         Manager
+                        </Menu.Item>
+                        <Menu.Item
+                            key="3"
+                            className={cx('custom-menu-item', { selected: selectedKey === '3' })}
+                            onClick={() => handleMenuItemClick('4')}
+                            style={{ color: collapsed ? '#000' : textColor }}
+                        >
+                            Staff
                         </Menu.Item>
                         <Menu.Item
                             key="4"
                             className={cx('custom-menu-item', { selected: selectedKey === '4' })}
-                            onClick={() => handleMenuItemClick('4')}
-                            style={{ color: collapsed ? '#000' : textColor }}
-                        >
-                            Chi tiết đơn hàng
-                        </Menu.Item>
-                        <Menu.Item
-                            key="5"
-                            className={cx('custom-menu-item', { selected: selectedKey === '5' })}
                             onClick={() => handleMenuItemClick('5')}
                             style={{ color: collapsed ? '#000' : textColor }}
                         >
-                            Tình trạng giao
+                            Stylist
                         </Menu.Item>
                     </SubMenu>
                     <Menu.Item
-                        key="6"
+                        key="5"
                         icon={<UserOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '6' })}
+                        className={cx('custom-menu-item', { selected: selectedKey === '5' })}
                         onClick={() => handleMenuItemClick('6')}
                         style={{ color: textColor }}
                     >
-                        Khách hàng
+                        Customer
                     </Menu.Item>
                     <Menu.Item
-                        key="7"
+                        key="6"
                         icon={<TeamOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '7' })}
+                        className={cx('custom-menu-item', { selected: selectedKey === '6' })}
                         onClick={() => handleMenuItemClick('7')}
                         style={{ color: textColor }}
                     >
-                       Nhân viên
+                       Services
                     </Menu.Item>
                     <Menu.Item
-                        key="8"
+                        key="7"
                         icon={<UnorderedListOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '8' })}
+                        className={cx('custom-menu-item', { selected: selectedKey === '7' })}
                         onClick={() => handleMenuItemClick('8')}
                         style={{ color: textColor }}
                     >
-                        Danh mục
-                    </Menu.Item>
-                    <Menu.Item
-                        key="9"
-                        icon={<PieChartOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '9' })}
-                        onClick={() => handleMenuItemClick('9')}
-                        style={{ color: textColor }}
-                    >
-                       Báo cáo & Thống kê
-                    </Menu.Item>
-                    <Menu.Item
-                        key="10"
-                        icon={<FileTextOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '10' })}
-                        onClick={() => handleMenuItemClick('10')}
-                        style={{ color: textColor }}
-                    >
-                       Blog
-                    </Menu.Item>
-                    <Menu.Item
-                        key="11"
-                        icon={<CustomerServiceOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '11' })}
-                        onClick={() => handleMenuItemClick('11')}
-                        style={{ color: textColor }}
-                    >
-                        Hỗ trợ khách hàng
-                    </Menu.Item>
-                    <Menu.Item
-                        key="12"
-                        icon={<TagOutlined />}
-                        className={cx('custom-menu-item', { selected: selectedKey === '12' })}
-                        onClick={() => handleMenuItemClick('12')}
-                        style={{ color: textColor }}
-                    >
-                       Giảm giá
+                       Role
                     </Menu.Item>
                 </Menu>
             </Sider>
+            
             <Layout>
-                <Header style={{ padding: 0, background: colorBgContainer }}>
+                <Header style={{ padding: 0, backgroundColor: selectedColor }}>
                     <Button
                         type="text"
                         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                         className={cx('btn-OutLined')}
                         onClick={() => setCollapsed(!collapsed)}
+                       
                     />
                     <Dropdown
                         overlay={
@@ -199,7 +159,7 @@ function DefaultLayout({ children }) {
                             </Menu>
                         }
                     >
-                        <Button style={{ backgroundColor: selectedColor, color: textColor }}>Chọn màu Theme</Button>
+                        <Button style={{ backgroundColor: selectedColor, color: textColor, border: '2px solid #fff' }}>Select color theme</Button>
                     </Dropdown>
                 </Header>
                 <Content
@@ -216,4 +176,4 @@ function DefaultLayout({ children }) {
     );
 }
 
-export default DefaultLayout;
+export default LayoutAdmin;
