@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    ShoppingCartOutlined,
     DashboardOutlined,
     UserOutlined,
     TeamOutlined,
     UnorderedListOutlined,
-    PieChartOutlined,
-    FileTextOutlined,
-    CustomerServiceOutlined,
-    TagOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme, Dropdown } from 'antd';
 import classNames from 'classnames/bind';
 import style from './LayoutAdmin.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faScissors } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(style);
 const { Header, Sider, Content } = Layout;
@@ -42,6 +40,7 @@ function LayoutAdmin({ children }) {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
+    const navigate = useNavigate(); 
 
     const handleColorChange = (color) => {
         setSelectedColor(color);
@@ -52,6 +51,13 @@ function LayoutAdmin({ children }) {
     };
 
     const textColor = getTextColor(selectedColor);
+
+    const handleMenuItemClickWithNavigation = (key) => {
+        handleMenuItemClick(key);
+        if (key === '1') {
+            navigate('/dashboard');     
+        }
+    };
 
     return (
         <Layout className={cx('wrapper')}>
@@ -70,7 +76,7 @@ function LayoutAdmin({ children }) {
                         key="1"
                         icon={<DashboardOutlined />}
                         className={cx('custom-menu-item', { selected: selectedKey === '1' })}
-                        onClick={() => handleMenuItemClick('1')}
+                        onClick={() => handleMenuItemClickWithNavigation('1')}
                         style={{ color: textColor }}
                     >
                         Dashboard
@@ -104,6 +110,7 @@ function LayoutAdmin({ children }) {
                             onClick={() => handleMenuItemClick('5')}
                             style={{ color: collapsed ? '#000' : textColor }}
                         >
+                            <FontAwesomeIcon icon={faScissors}/>
                             Stylist
                         </Menu.Item>
                     </SubMenu>
