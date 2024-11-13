@@ -1,0 +1,11 @@
+.wrapper {
+  min-height: 100vh;
+  padding: 10px 20px;
+}
+.btn {
+  background: #de009b;
+  color: aliceblue;
+  &:hover {
+    border: #de009b solid 1px;
+  }
+}

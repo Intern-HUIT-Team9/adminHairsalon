@@ -86,7 +86,7 @@ function LayoutManager({ children }) {
             onClick={() => handleMenuItemClickWithNavigation("1")}
             style={{ color: textColor }}
           >
-            Dashboard
+            Payroll
           </Menu.Item>
           <SubMenu
             key="sub1"

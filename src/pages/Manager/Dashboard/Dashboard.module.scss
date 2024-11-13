@@ -1,0 +1,166 @@
+.wrapper {
+    min-height: 100vh;
+    padding: 10px 20px;
+}
+
+.name-page {
+    display: flex;
+    align-items: center;
+
+    .icon-home {
+        color: var(--TextPrimary);
+    }
+
+    span {
+        margin-left: 10px;
+        color: var(--TextPrimary);
+    }
+}
+
+.wrapper__card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .style-card {
+        position: relative;
+        width: 30%;
+        border-radius: 20px;
+        height: 150px;
+        padding: 10px 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+    }
+
+    .card__sales {
+        @extend .style-card;
+        background: linear-gradient(90deg, #FF70938B, #FFB1B1, #FFD08B);
+    }
+
+    .card__orders {
+        @extend .style-card;
+        background: linear-gradient(90deg, #4F45FE, #53A3F8, #94DDF5);
+    }
+
+    .card__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+            color: #fff;
+        }
+
+        .icon-chartbar {
+            color: #fff;
+            font-size: 1.6rem;
+        }
+    }
+
+    .card__content {
+        width: 100%;
+
+        p {
+            position: absolute;
+            font-size: 1.8rem;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+    }
+
+    .card__time {
+        position: absolute;
+        right: 10px;
+        bottom: 5px;
+    }
+
+    .card__select-time {
+        @extend .style-card;
+        background-color: #f4f4f4;
+        width: 38%;
+
+        .select__ontime {
+            display: flex;
+            align-items: center;
+
+            .title-ontime {
+                margin-right: 10px;
+                font-weight: bold;
+            }
+
+            .option-time {
+                display: flex;
+                align-items: center;
+
+                label {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .select__moretime {
+            margin-top: 10px;
+
+            .option-time {
+                display: flex;
+                align-items: center;
+
+                input {
+                    width: 16px;
+                    height: 16px;
+                }
+
+                label {
+                    margin-left: 10px;
+                    font-weight: bold;
+                }
+            }
+
+            .time-selection {
+                display: flex;
+                margin-top: 10px;
+                gap: 10px;
+
+                .form-date {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    width: 48%;
+
+                    label {
+                        margin-bottom: 5px;
+                        font-size: 14px;
+                    }
+
+                    input[type="date"] {
+                        width: 100%;
+                        padding: 8px;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        border: 1px solid #ccc;
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+.wrapper__statistical {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+
+    .chart-sales {
+        width: 65%;
+    }
+
+    .chart-orders {
+        width: 30%;
+    }
+}
