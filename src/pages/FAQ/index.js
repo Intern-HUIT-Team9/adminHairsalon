@@ -27,8 +27,6 @@ function FAQ() {
                   <p class="mb-2 text-gray-500 dark:text-gray-400">Chúng tôi cung cấp chỗ đậu xe thuận tiện cho khách hàng gần salon. Hãy liên hệ để biết thêm chi tiết về bãi đậu xe.</p>
                 </div>
               </div>
-            
-
               <h2 id="accordion-color-heading-2">
                 <button type="button" class="flex items-center justify-between w-full p-4 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-color-body-2" aria-expanded="true" aria-controls="accordion-color-body-2">    
                   <span className="flex items-center text-lg font-bold">
