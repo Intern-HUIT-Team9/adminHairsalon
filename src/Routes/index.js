@@ -1,14 +1,14 @@
-import LayoutAdmin from "~/components/Layout/LayoutAdmin"
-import Dashboard from "~/pages/Admin/Dashboard"
+import LayoutAdmin from "~/components/Layout/LayoutAdmin";
+import LayoutManager from "~/components/Layout/LayoutManager";
+import Dashboard from "~/pages/Admin/Dashboard";
 
 //Public Routes
-const publicRoutes =[
-    {path: "/dashboard", component: Dashboard, layout: LayoutAdmin},
-]
+const publicRoutes = [
+  { path: "/dashboard", component: Dashboard, layout: LayoutAdmin },
+  { path: "/dashboard/m", component: Dashboard, layout: LayoutManager },
+];
 
 //Private Routers
-const privateRoutes =[
+const privateRoutes = [];
 
-]
-
-export {publicRoutes, privateRoutes}
+export { publicRoutes, privateRoutes };
