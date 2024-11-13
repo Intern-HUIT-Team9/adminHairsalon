@@ -1,0 +1,41 @@
+* {
+    padding    : 0;
+    margin     : 0;
+    font-family: Labrada;
+    box-sizing : border-box;
+}
+
+.h_8 {
+    height: 3rem !important;
+}
+
+.navItem {
+    color: black;
+
+    &:hover {
+        color: #EC0707;
+    }
+}
+
+.flex_end {
+    align-items: center;
+    gap        : 30px;
+
+    .btn_book {
+        display         : flex;
+        width           : 120px;
+        height          : 40px;
+        gap             : 5px;
+        text-align      : center;
+        justify-content : center;
+        align-items     : center;
+        background-color: #DAB8AC;
+        border-radius   : 9999px;
+        margin-left     : 50px;
+    }
+}
+
+
+.btn_bookk {
+    margin: 0px;
+}

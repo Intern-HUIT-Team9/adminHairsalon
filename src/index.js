@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/globalStyles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './input.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

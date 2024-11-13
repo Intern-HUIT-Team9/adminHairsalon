@@ -1,3 +1,5 @@
+import Footer from "~/components/Layout/components/Footer"
+import FAQ from "~/pages/FAQ"
 import HomePage from "~/pages/HomePage"
 import ServicesPage from "~/pages/ServicesPage"
 
@@ -5,6 +7,7 @@ import ServicesPage from "~/pages/ServicesPage"
 const publicRoutes =[
     {path: "/", component: HomePage},
     {path: "/services", component: ServicesPage},
+    {path: "/faq", component: FAQ}
 ]
 
 //Private Routers
