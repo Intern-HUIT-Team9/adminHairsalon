@@ -3,6 +3,7 @@ import LayoutManager from "~/components/Layout/LayoutManager";
 import Dashboard from "~/pages/Admin/Dashboard";
 import EmployeeForm from "~/pages/Manager/EmployeeForm";
 import Payroll from "~/pages/Manager/Payroll";
+import PromotionManagement from "~/pages/Manager/PromotionManagement";
 
 const publicRoutes = [
   { path: "/dashboard", component: Dashboard, layout: LayoutAdmin },
@@ -14,6 +15,11 @@ const publicRoutes = [
   {
     path: "/Manager/employees",
     component: EmployeeForm,
+    layout: LayoutManager,
+  },
+  {
+    path: "/Manager/PromotionManagement",
+    component: PromotionManagement,
     layout: LayoutManager,
   },
 ];

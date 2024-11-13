@@ -1,8 +1,24 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
+import { Link } from "react-router-dom";
 import styles from "./Payroll.module.scss";
-import { Table, Button, Input, Select, Space } from "antd";
+import {
+  Table,
+  Button,
+  Input,
+  Select,
+  Space,
+  Form,
+  Modal,
+  DatePicker,
+  Upload,
+  message,
+  Row,
+  Col,
+} from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UploadOutlined } from "@ant-design/icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import {
   faHome,
   faEye,
@@ -19,7 +35,23 @@ function Payroll() {
   const [levelFilter, setLevelFilter] = useState(null);
   const [departmentFilter, setDepartmentFilter] = useState(null);
   const [salonFilter, setSalonFilter] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [form] = Form.useForm();
+  // Hàm mở modal
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
+  // Hàm đóng modal
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  // Hàm xử lý khi form được submit
+  const handleSubmit = (values) => {
+    console.log("Received values: ", values);
+    setIsModalVisible(false); // Đóng modal sau khi submit thành công
+  };
   const columns = [
     { title: "STT", dataIndex: "stt", key: "stt" },
     { title: "ID", dataIndex: "id", key: "id" },
@@ -71,12 +103,18 @@ function Payroll() {
       key: "actions",
       render: () => (
         <>
-          <Button type="link">
-            <FontAwesomeIcon icon={faEye} />
-          </Button>
-          <Button type="link">
-            <FontAwesomeIcon icon={faPenToSquare} />
-          </Button>
+          <Link to={`/Manager/employees`}>
+            <Button type="link">
+              <FontAwesomeIcon icon={faEye} />
+            </Button>
+          </Link>
+
+          {/* Chỉnh sửa - Link đến trang chỉnh sửa */}
+          <Link to={`/Manager/employees`}>
+            <Button type="link">
+              <FontAwesomeIcon icon={faPenToSquare} />
+            </Button>
+          </Link>
         </>
       ),
     },
@@ -456,7 +494,9 @@ function Payroll() {
           <Space style={{ marginBottom: -5 }}>
             <Button className={cx("btn")}>Xem dữ liệu</Button>
             <Button className={cx("btn")}>Xuất excel</Button>
-            <Button className={cx("btn")}>Thêm nhân viên</Button>
+            <Button className={cx("btn")} onClick={showModal}>
+              Thêm nhân viên
+            </Button>
           </Space>
 
           <Space style={{ marginBottom: 10 }} size="large">
@@ -480,6 +520,255 @@ function Payroll() {
           dataSource={filteredData}
           pagination={{ pageSize: 5 }}
         />
+
+        <Modal
+          title="Thêm nhân viên"
+          visible={isModalVisible}
+          onCancel={handleCancel}
+          footer={null} // Để footer mặc định không xuất hiện
+          width={1000}
+        >
+          <Form form={form} onFinish={handleSubmit} layout="vertical">
+            {/* Tên đăng nhập */}
+            <Form.Item
+              name="username"
+              label="Tên đăng nhập"
+              rules={[
+                { required: true, message: "Vui lòng nhập tên đăng nhập!" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            {/* Họ và tên */}
+            <Form.Item
+              name="fullName"
+              label="Họ và tên nhân viên"
+              rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}
+            >
+              <Input />
+            </Form.Item>
+
+            {/* Số CCCD */}
+            <Form.Item
+              name="idCard"
+              label="Số CCCD"
+              rules={[{ required: true, message: "Vui lòng nhập số CCCD!" }]}
+            >
+              <Input />
+            </Form.Item>
+
+            {/* Ngày cấp / Nơi cấp */}
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="issueDate"
+                  label="Ngày cấp"
+                  rules={[
+                    { required: true, message: "Vui lòng chọn ngày cấp!" },
+                  ]}
+                >
+                  <DatePicker format="DD/MM/YYYY" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="issuePlace"
+                  label="Nơi cấp"
+                  rules={[
+                    { required: true, message: "Vui lòng nhập nơi cấp!" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* Ngày sinh / Giới tính */}
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="dob"
+                  label="Ngày sinh"
+                  rules={[
+                    { required: true, message: "Vui lòng chọn ngày sinh!" },
+                  ]}
+                >
+                  <DatePicker format="DD/MM/YYYY" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="gender"
+                  label="Giới tính"
+                  rules={[
+                    { required: true, message: "Vui lòng chọn giới tính!" },
+                  ]}
+                >
+                  <Select placeholder="Chọn giới tính">
+                    <Option value="male">Nam</Option>
+                    <Option value="female">Nữ</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* Địa chỉ */}
+            <Form.Item
+              name="address"
+              label="Địa chỉ"
+              rules={[{ required: true, message: "Vui lòng nhập địa chỉ!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="city"
+                  label="Tỉnh/Thành phố"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Vui lòng nhập tỉnh/thành phố!",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="district"
+                  label="Quận/Huyện"
+                  rules={[
+                    { required: true, message: "Vui lòng nhập quận/huyện!" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* SĐT / Mail */}
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="phone"
+                  label="Số điện thoại"
+                  rules={[
+                    { required: true, message: "Vui lòng nhập số điện thoại!" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="email"
+                  label="Email"
+                  rules={[{ required: true, message: "Vui lòng nhập email!" }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* Ảnh */}
+            <Form.Item
+              name="portrait"
+              label="Ảnh chân dung"
+              rules={[
+                { required: true, message: "Vui lòng tải ảnh chân dung!" },
+              ]}
+            >
+              <Upload action="/upload" listType="picture" maxCount={1}>
+                <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
+              </Upload>
+            </Form.Item>
+
+            {/* Thông tin làm việc */}
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="workBlock"
+                  label="Khối"
+                  rules={[{ required: true, message: "Vui lòng chọn khối!" }]}
+                >
+                  <Select placeholder="Chọn khối nhân sự">
+                    <Option value="admin">Quản lý</Option>
+                    <Option value="staff">Nhân viên</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="salon"
+                  label="Salon"
+                  rules={[{ required: true, message: "Vui lòng chọn salon!" }]}
+                >
+                  <Select placeholder="Chọn salon">
+                    <Option value="salon1">Salon 1</Option>
+                    <Option value="salon2">Salon 2</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Form.Item
+              name="position"
+              label="Bộ phận"
+              rules={[{ required: true, message: "Vui lòng chọn bộ phận!" }]}
+            >
+              <Select placeholder="Chọn bộ phận">
+                <Option value="stylist">Stylist</Option>
+                <Option value="manager">Quản lý</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              name="directManager"
+              label="Người quản lý trực tiếp"
+              rules={[
+                { required: true, message: "Vui lòng chọn người quản lý!" },
+              ]}
+            >
+              <Select placeholder="Chọn người quản lý">
+                <Option value="manager1">Quản lý 1</Option>
+                <Option value="manager2">Quản lý 2</Option>
+              </Select>
+            </Form.Item>
+
+            {/* Ngày vào làm việc */}
+            <Form.Item
+              name="startDate"
+              label="Ngày vào làm việc"
+              rules={[
+                { required: true, message: "Vui lòng chọn ngày vào làm việc!" },
+              ]}
+            >
+              <DatePicker format="DD/MM/YYYY" />
+            </Form.Item>
+
+            {/* Trạng thái */}
+            <Form.Item
+              name="status"
+              label="Trạng thái"
+              rules={[{ required: true, message: "Vui lòng chọn trạng thái!" }]}
+            >
+              <Select placeholder="Chọn trạng thái">
+                <Option value="active">Đang hoạt động</Option>
+                <Option value="inactive">Nghỉ tạm thời</Option>
+              </Select>
+            </Form.Item>
+
+            {/* Phần footer */}
+            <Form.Item>
+              <Button type="primary" htmlType="submit" block>
+                Lưu thông tin
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
       </div>
     </div>
   );

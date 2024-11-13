@@ -54,7 +54,10 @@ function LayoutManager({ children }) {
   const handleMenuItemClickWithNavigation = (key) => {
     handleMenuItemClick(key);
     if (key === "1") {
-      navigate("/dashboard");
+      navigate("/Manager/Payroll");
+    }
+    if (key === "2") {
+      navigate("/Manager/PromotionManagement");
     }
   };
 
@@ -88,78 +91,28 @@ function LayoutManager({ children }) {
           >
             Payroll
           </Menu.Item>
-          <SubMenu
-            key="sub1"
-            icon={<UnorderedListOutlined style={{ color: textColor }} />}
-            title={<span style={{ color: textColor }}>Account</span>}
-            popupStyle={{ backgroundColor: selectedColor }}
-            style={{ backgroundColor: collapsed ? selectedColor : undefined }}
-          >
-            <Menu.Item
-              key="2"
-              className={cx("custom-menu-item", {
-                selected: selectedKey === "2",
-                collapsed: collapsed,
-              })}
-              onClick={() => handleMenuItemClick("3")}
-              style={{ color: collapsed ? "#000" : textColor }}
-            >
-              Manager
-            </Menu.Item>
-            <Menu.Item
-              key="3"
-              className={cx("custom-menu-item", {
-                selected: selectedKey === "3",
-              })}
-              onClick={() => handleMenuItemClick("4")}
-              style={{ color: collapsed ? "#000" : textColor }}
-            >
-              Staff
-            </Menu.Item>
-            <Menu.Item
-              key="4"
-              className={cx("custom-menu-item", {
-                selected: selectedKey === "4",
-              })}
-              onClick={() => handleMenuItemClick("5")}
-              style={{ color: collapsed ? "#000" : textColor }}
-            >
-              <FontAwesomeIcon icon={faScissors} />
-              Stylist
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item
-            key="5"
-            icon={<UserOutlined />}
-            className={cx("custom-menu-item", {
-              selected: selectedKey === "5",
-            })}
-            onClick={() => handleMenuItemClick("6")}
-            style={{ color: textColor }}
-          >
-            Customer
-          </Menu.Item>
+
           <Menu.Item
             key="6"
             icon={<TeamOutlined />}
             className={cx("custom-menu-item", {
               selected: selectedKey === "6",
             })}
-            onClick={() => handleMenuItemClick("7")}
+            onClick={() => handleMenuItemClickWithNavigation("2")}
             style={{ color: textColor }}
           >
-            Services
+            PromotionManagement
           </Menu.Item>
           <Menu.Item
             key="7"
             icon={<UnorderedListOutlined />}
+            onClick={() => handleMenuItemClickWithNavigation("1")}
             className={cx("custom-menu-item", {
               selected: selectedKey === "7",
             })}
-            onClick={() => handleMenuItemClick("8")}
             style={{ color: textColor }}
           >
-            Role
+            Report
           </Menu.Item>
         </Menu>
       </Sider>

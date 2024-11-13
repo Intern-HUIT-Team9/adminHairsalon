@@ -43,22 +43,231 @@ const EmployeeForm = () => {
             </Text>
           </Divider>
 
-          <Form layout="vertical">
+          <Form layout="vertical" style={{ maxWidth: 1300, margin: "0 auto" }}>
+            <Title level={4}>Thông tin làm việc</Title>
+
+            {/* Tên đăng nhập */}
+            <Form.Item
+              label="Tên đăng nhập"
+              name="username"
+              style={{ width: "100%" }}
+            >
+              <Input placeholder="Nhập tên đăng nhập" />
+            </Form.Item>
+
+            {/* Họ và tên nhân viên */}
+            <Form.Item
+              label="Họ và tên nhân viên"
+              name="employeeName"
+              style={{ width: "100%" }}
+            >
+              <Input placeholder="Nhập họ và tên nhân viên" />
+            </Form.Item>
+
             <Row gutter={16}>
-              {/* Nội dung chi tiết "Thông tin làm việc" */}
+              {/* Khối */}
               <Col span={12}>
                 <Form.Item
-                  label="Tên đăng nhập"
-                  name="username"
-                  rules={[
-                    { required: true, message: "Vui lòng nhập tên đăng nhập" },
-                  ]}
+                  label="Khối"
+                  name="division"
+                  rules={[{ required: true, message: "Khối là bắt buộc" }]}
                 >
-                  <Input placeholder="Tên đăng nhập" />
+                  <Select placeholder="Chọn khối">
+                    <Option value="Salon">Salon</Option>
+                    {/* Add more options as needed */}
+                  </Select>
                 </Form.Item>
               </Col>
-              {/* Thêm các trường khác theo yêu cầu của bạn */}
+
+              {/* Salon */}
+              <Col span={12}>
+                <Form.Item
+                  label="Salon"
+                  name="salon"
+                  rules={[{ required: true, message: "Salon là bắt buộc" }]}
+                >
+                  <Select placeholder="Chọn salon">
+                    <Option value="382 NT">382 NT</Option>
+                    {/* Add more options as needed */}
+                  </Select>
+                </Form.Item>
+              </Col>
             </Row>
+
+            <Row gutter={16}>
+              {/* Bộ phận */}
+              <Col span={12}>
+                <Form.Item
+                  label="Bộ phận"
+                  name="department"
+                  rules={[{ required: true, message: "Bộ phận là bắt buộc" }]}
+                >
+                  <Select placeholder="Chọn bộ phận">
+                    <Option value="Stylist">Stylist</Option>
+                    {/* Add more options as needed */}
+                  </Select>
+                </Form.Item>
+              </Col>
+
+              {/* ID người quản lý */}
+              <Col span={12}>
+                <Form.Item
+                  label="ID người quản lý trực tiếp"
+                  name="managerId"
+                  rules={[
+                    { required: true, message: "ID quản lý là bắt buộc" },
+                  ]}
+                >
+                  <Input placeholder="Nhập ID quản lý" />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row gutter={16}>
+              {/* Tên người quản lý */}
+              <Col span={12}>
+                <Form.Item
+                  label="Tên người quản lý trực tiếp"
+                  name="managerName"
+                  rules={[
+                    { required: true, message: "Tên quản lý là bắt buộc" },
+                  ]}
+                >
+                  <Select placeholder="Chọn người quản lý">
+                    <Option value="Bùi Thị Hương Ly">Bùi Thị Hương Ly</Option>
+                    {/* Add more options as needed */}
+                  </Select>
+                </Form.Item>
+              </Col>
+
+              {/* Bậc kỹ năng */}
+              <Col span={12}>
+                <Form.Item
+                  label="Bậc kỹ năng"
+                  name="skillLevel"
+                  rules={[
+                    { required: true, message: "Bậc kỹ năng là bắt buộc" },
+                  ]}
+                >
+                  <Select placeholder="Chọn bậc kỹ năng">
+                    <Option value="Level III">Level III</Option>
+                    {/* Add more options as needed */}
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* Ngày vào làm việc */}
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  label="Ngày vào làm việc"
+                  name="startDate"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Ngày vào làm việc là bắt buộc",
+                    },
+                  ]}
+                >
+                  <DatePicker format="DD/MM/YYYY" style={{ width: "100%" }} />
+                </Form.Item>
+              </Col>
+
+              {/* Ngày tính thâm niên */}
+              <Col span={12}>
+                <Form.Item
+                  label="Ngày tính thâm niên"
+                  name="seniorityDate"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Ngày tính thâm niên là bắt buộc",
+                    },
+                  ]}
+                >
+                  <DatePicker format="DD/MM/YYYY" style={{ width: "100%" }} />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            {/* Trạng thái */}
+            <Form.Item
+              label="Trạng thái"
+              name="status"
+              rules={[{ required: true, message: "Trạng thái là bắt buộc" }]}
+            >
+              <Radio.Group>
+                <Space direction="vertical">
+                  <Radio value="Đang hoạt động">Đang hoạt động</Radio>
+                  <Radio value="Nghỉ tạm thời">Nghỉ tạm thời</Radio>
+                  <Radio value="Xin nghỉ">Xin nghỉ</Radio>
+                  <Radio value="Cho nghỉ">Cho nghỉ</Radio>
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+
+            {/* Loại mã nhân viên */}
+            <Form.Item
+              label="Loại mã nhân viên"
+              name="employeeCodeType"
+              rules={[{ required: true, message: "Loại mã là bắt buộc" }]}
+            >
+              <Radio.Group>
+                <Space direction="vertical">
+                  <Radio value="Mã chính">Mã chính</Radio>
+                  <Radio value="Mã kiểm nhiệm">Mã kiểm nhiệm</Radio>
+                  <Radio value="Mã ảo">Mã ảo</Radio>
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+
+            {/* Yêu cầu điểm danh */}
+            <Form.Item
+              label="Yêu cầu điểm danh"
+              name="attendanceRequired"
+              rules={[
+                { required: true, message: "Yêu cầu điểm danh là bắt buộc" },
+              ]}
+            >
+              <Radio.Group>
+                <Space direction="vertical">
+                  <Radio value="Có">Có</Radio>
+                  <Radio value="Không">Không</Radio>
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+
+            {/* Đánh giá ngoại hình */}
+            <Form.Item
+              label="Đánh giá ngoại hình"
+              name="appearanceRating"
+              rules={[
+                { required: true, message: "Đánh giá ngoại hình là bắt buộc" },
+              ]}
+            >
+              <Radio.Group>
+                <Space direction="vertical">
+                  <Radio value="Tốt">Tốt</Radio>
+                  <Radio value="Trung bình">Trung bình</Radio>
+                  <Radio value="Dưới trung bình">Dưới trung bình</Radio>
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+
+            {/* Nguồn lao động */}
+            <Form.Item label="Nguồn lao động" name="laborSource">
+              <Select placeholder="Chọn nguồn lao động">
+                {/* Add options as needed */}
+              </Select>
+            </Form.Item>
+
+            {/* Nút Lưu */}
+            <Form.Item>
+              <Button type="primary" htmlType="submit" block>
+                Lưu thông tin
+              </Button>
+            </Form.Item>
           </Form>
         </TabPane>
 
@@ -282,20 +491,86 @@ const EmployeeForm = () => {
             </Text>
           </Divider>
 
-          {/* Nội dung chi tiết "Phân quyền" */}
-          <Form layout="vertical">
-            <Row gutter={16}>
-              <Col span={12}>
-                <Form.Item label="Vai trò" name="role">
-                  <Select placeholder="Chọn vai trò">
-                    <Option value="admin">Quản trị viên</Option>
-                    <Option value="manager">Quản lý</Option>
-                    <Option value="staff">Nhân viên</Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-              {/* Thêm các trường khác theo yêu cầu của bạn */}
-            </Row>
+          <Form
+            layout="vertical"
+            style={{
+              maxWidth: 600,
+              margin: "0 auto",
+              backgroundColor: "#f5f5f5",
+              padding: "20px",
+              borderRadius: "8px",
+            }}
+          >
+            <Title level={4} style={{ marginBottom: 0 }}>
+              <span role="img" aria-label="edit">
+                ✏️
+              </span>{" "}
+              Phân quyền ERP{" "}
+              <Text type="danger">(*): Bắt buộc điền thông tin!</Text>
+            </Title>
+
+            <Form.Item label="Tên đăng nhập">
+              <Input value="huypq" disabled />
+            </Form.Item>
+
+            <Form.Item label="Họ và tên">
+              <Input value="Phạm Quang Huy" disabled />
+            </Form.Item>
+
+            <Form.Item label="Khối">
+              <Input value="Văn phòng" disabled />
+            </Form.Item>
+
+            <Form.Item label="Bộ phận">
+              <Input value="Bộ phận chung" disabled />
+            </Form.Item>
+
+            <Form.Item
+              label={
+                <span style={{ color: "red" }}>*</span> + " Loại tài khoản"
+              }
+              required
+            >
+              <Radio.Group defaultValue="employee">
+                <Radio value="employee">Tài khoản nhân viên</Radio>
+                <Radio value="login">Tài khoản đăng nhập</Radio>
+              </Radio.Group>
+            </Form.Item>
+
+            <Form.Item label="Phân quyền">
+              <Select
+                defaultValue="STAFF"
+                style={{ width: "100%" }}
+                mode="multiple"
+              >
+                <Option value="STAFF">STAFF</Option>
+                <Option value="ADMIN">ADMIN</Option>
+                {/* Add other roles as needed */}
+              </Select>
+            </Form.Item>
+
+            <Form.Item>
+              <Space
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <Button
+                  type="primary"
+                  style={{
+                    backgroundColor: "#FFA500",
+                    borderColor: "#FFA500",
+                    color: "white",
+                  }}
+                >
+                  Đặt lại mật khẩu
+                </Button>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#000", borderColor: "#000" }}
+                >
+                  Hoàn tất
+                </Button>
+              </Space>
+            </Form.Item>
           </Form>
         </TabPane>
 
