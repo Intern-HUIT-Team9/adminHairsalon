@@ -28,10 +28,10 @@ function Dashboard() {
         datasets: [
             {
                 label: 'Sales',
-                data: [1200, 1900, 3000, 5000, 2300, 4000], // Dữ liệu doanh thu giả
+                data: [1200, 1900, 3000, 5000, 2300, 4000], // Dữ liệu doanh thu npm
                 fill: false,
-                borderColor: 'rgba(75,192,192,1)', // Màu  viền
-                backgroundColor: 'rgba(75,192,192,0.2)', // Màu nền
+                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(75,192,192,0.2)', 
                 tension: 0.1
             }
         ]
