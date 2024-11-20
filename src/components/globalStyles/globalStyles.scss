@@ -1,9 +1,9 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root{
+:root {
     --fontText: 'Montserrat', sans-serif;
-    --primary: #960304;
+    --primary: #ffffff;
     --btnPrimary: ;
     --TextPrimary: #FF5252;
     --text: #ffffff;
@@ -12,15 +12,18 @@
     --sizeTextTablet: 20px;
     --sizeTextTitleTablet: 30px;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html{
+
+html {
     font-size: 62.5%;
 }
-body{
+
+body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5em;
     margin: 0;
@@ -28,12 +31,13 @@ body{
     background-color: var(--primary) !important;
 }
 
-button,input[tabindex]{
+button,
+input[tabindex] {
     outline: none;
     border: none;
 }
 
-a[href]{
+a[href] {
     color: var(--text);
     text-decoration: none;
 }

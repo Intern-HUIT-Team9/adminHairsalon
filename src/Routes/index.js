@@ -1,4 +1,6 @@
+import React from 'react';
 import LayoutAdmin from "~/components/Layout/LayoutAdmin"
+
 import Account from "~/pages/Admin/Account"
 import Customer from "~/pages/Admin/Customer"
 import Dashboard from "~/pages/Admin/Dashboard"
@@ -8,8 +10,14 @@ import EmployeeForm from "~/pages/Manager/EmployeeForm";
 import Payroll from "~/pages/Manager/Payroll";
 import PromotionManagement from "~/pages/Manager/PromotionManagement";
 
+import LayoutStylist from '~/components/Layout/LayoutStylist';
+import DashboardStylist from "~/pages/Stylist/Dashboard"
+import Login from '~/pages/Login';
+
+
 //Public Routes
 const publicRoutes =[
+    {path: "/", component: Login},
     {path: "/admin/dashboard", component: Dashboard, layout: LayoutAdmin},
     {path: "/admin/account", component: Account, layout: LayoutAdmin},
     {path: "/admin/customer", component: Customer, layout: LayoutAdmin},
@@ -31,6 +39,9 @@ const publicRoutes =[
     component: PromotionManagement,
     layout: LayoutManager,
   },
+
+  {path: "/dashboardStylist", component: DashboardStylist, layout: LayoutStylist},
+
 ]
 
 //Private Routers
